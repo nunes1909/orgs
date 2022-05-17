@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imagem_dialog_imageview"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/imagem_padrao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/imagem_dialog_botao_carregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_action_carregar"
+        android:text="Carregar"
+        app:layout_constraintBottom_toBottomOf="@id/imagem_dialog_imageview"
+        app:layout_constraintEnd_toStartOf="@id/imagem_dialog_botao_limpar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imagem_dialog_imageview" />
+
+    <Button
+        android:id="@+id/imagem_dialog_botao_limpar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_action_limpar"
+        android:text="Limpar"
+        app:layout_constraintBottom_toBottomOf="@id/imagem_dialog_imageview"
+        app:layout_constraintStart_toEndOf="@id/imagem_dialog_botao_carregar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imagem_dialog_imageview" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imagem_dialog_botao_carregar">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/imagem_dialog_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Url da imagem" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

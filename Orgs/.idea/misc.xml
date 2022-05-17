@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/Orgs/app/src/main/res/drawable-anydpi/ic_action_carregar.xml" value="0.318" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/Orgs/app/src/main/res/drawable-anydpi/ic_action_limpar.xml" value="0.318" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/Orgs/app/src/main/res/drawable-anydpi/ic_action_salva_produto.xml" value="0.3385" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/Orgs/app/src/main/res/layout/activity_formulario_produto.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/Orgs/app/src/main/res/layout/activity_lista_produtos.xml" value="0.5" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/Orgs/app/src/main/res/layout/imagem_dialog.xml" value="0.25" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/Orgs/app/src/main/res/layout/item_produto.xml" value="0.5541666666666667" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/Orgs/app/src/main/res/menu/item_menu_formulario.xml" value="0.5541666666666667" />
       </map>
