@@ -1,6 +1,5 @@
 package com.example.orgs.ui.recylerview
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.ViewGroup
@@ -9,8 +8,6 @@ import com.example.orgs.databinding.ItemProdutoBinding
 import com.example.orgs.extensions.formataParaMoedaBrasileira
 import com.example.orgs.extensions.tentaCarregar
 import com.example.orgs.model.Produto
-import java.text.NumberFormat
-import java.util.*
 
 class ListaProdutosAdapter(
     listaProdutos: List<Produto> = emptyList(),
@@ -29,7 +26,6 @@ class ListaProdutosAdapter(
             itemView.setOnClickListener {
                 if (::produtoIniciado.isInitialized) {
                     produtoClicadoListener(produtoIniciado)
-                    Log.i("TAG locona", "item clicado: ")
                 }
             }
         }

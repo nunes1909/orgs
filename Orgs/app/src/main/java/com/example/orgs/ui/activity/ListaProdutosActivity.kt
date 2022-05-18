@@ -25,8 +25,8 @@ class ListaProdutosActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val produtoDAO = AppDatabase.getInstance(this).getProdutoDAO()
-        produtoAdapter.atualiza(produtoDAO.buscaTodos())
+        val db = AppDatabase.getInstance(this).getProdutoDAO()
+        produtoAdapter.atualiza(db.buscaTodos())
     }
 
     private fun configuraRecyclerView() {

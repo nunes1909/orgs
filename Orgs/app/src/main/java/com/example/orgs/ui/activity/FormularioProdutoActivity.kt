@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.orgs.R
-import com.example.orgs.dao.internoDAO
 import com.example.orgs.database.AppDatabase
 import com.example.orgs.databinding.ActivityFormularioProdutoBinding
 import com.example.orgs.extensions.tentaCarregar
@@ -20,6 +19,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
     }
 
     private var url: String? = null
+    private var idProduto = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +32,17 @@ class FormularioProdutoActivity : AppCompatActivity() {
                 binding.formularioProdutoImagem.tentaCarregar(url)
             }
         }
+
+        intent.getParcelableExtra<Produto>("produto")?.let { produtoCarregado ->
+            title = "Editar produto"
+            idProduto = produtoCarregado.id
+
+            binding.formularioProdutoImagem.tentaCarregar(produtoCarregado.imagem)
+            binding.formularioProdutoValor.setText(produtoCarregado.valor.toPlainString())
+            binding.formularioProdutoNome.setText(produtoCarregado.nome)
+            binding.formularioProdutoDescricao.setText(produtoCarregado.descricao)
+
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -40,7 +51,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.item_salvar) {
+        if (item.itemId == R.id.item_menu_formulario_salvar) {
             val campoNome = binding.formularioProdutoNome.text.toString().trim()
             val campoDescricao = binding.formularioProdutoDescricao.text.toString()
 
