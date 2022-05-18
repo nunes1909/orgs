@@ -11,6 +11,7 @@ import com.example.orgs.databinding.ActivityFormularioProdutoBinding
 import com.example.orgs.extensions.tentaCarregar
 import com.example.orgs.model.Produto
 import com.example.orgs.ui.dialog.ImagemDialog
+import java.math.BigDecimal
 
 class FormularioProdutoActivity : AppCompatActivity() {
 
@@ -42,30 +43,24 @@ class FormularioProdutoActivity : AppCompatActivity() {
         if (item.itemId == R.id.item_salvar) {
             val campoNome = binding.formularioProdutoNome.text.toString().trim()
             val campoDescricao = binding.formularioProdutoDescricao.text.toString()
+
             val campoValor = binding.formularioProdutoValor.text.toString()
+            val valor = if (campoValor.isBlank()) {
+                BigDecimal.ZERO
+            } else {
+                BigDecimal(campoValor)
+            }
 
             val produtoCriado = Produto(
                 nome = campoNome,
                 descricao = campoDescricao,
-                valor = campoValor,
+                valor = valor,
                 imagem = url
             )
 
-            if (validacaoFormulario(produtoCriado)) {
-                dao.salva(produtoCriado)
-                finish()
-            } else {
-                Toast.makeText(
-                    this,
-                    "Para salvar preencha o título",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            dao.salva(produtoCriado)
+            finish()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun validacaoFormulario(produto: Produto): Boolean {
-        return !(produto.nome == null || produto.nome == "")
     }
 }

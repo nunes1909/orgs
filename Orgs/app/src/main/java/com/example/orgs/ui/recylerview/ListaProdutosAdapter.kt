@@ -1,44 +1,53 @@
 package com.example.orgs.ui.recylerview
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
-import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.databinding.ItemProdutoBinding
+import com.example.orgs.extensions.formataParaMoedaBrasileira
 import com.example.orgs.extensions.tentaCarregar
 import com.example.orgs.model.Produto
 import java.text.NumberFormat
 import java.util.*
 
 class ListaProdutosAdapter(
-    listaProdutos: List<Produto>
+    listaProdutos: List<Produto>,
+    var produtoClicadoListener: (produto: Produto) -> Unit = {}
 ) : RecyclerView.Adapter<ListaProdutosAdapter.ProdutoViewHolder>() {
 
     private val produtos = listaProdutos.toMutableList()
 
-    class ProdutoViewHolder(binding: ItemProdutoBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ProdutoViewHolder(binding: ItemProdutoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private val binding = binding
 
-        fun vincula(produto: Produto) {
+        private lateinit var produtoIniciado: Produto
 
+        init {
+            itemView.setOnClickListener {
+                if (::produtoIniciado.isInitialized) {
+                    produtoClicadoListener(produtoIniciado)
+                    Log.i("TAG locona", "item clicado: ")
+                }
+            }
+        }
+
+        fun vincula(produto: Produto) {
+            produtoIniciado = produto
             binding.apply {
 
-                val campoNome = itemProdutoNome
-                campoNome.text = produto.nome
+                itemProdutoNome.text = produto.nome
 
-                val campoDescricao = itemProdutoDescricao
-                campoDescricao.text = produto.descricao
+                itemProdutoDescricao.text = produto.descricao
 
-                val campoValor = itemProdutoValor
-                val formatador = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
-                val moedaFormatada: String = formatador.format(produto.valor.toDouble())
-                campoValor.text = moedaFormatada
+                val moedaFormatada: String = produto.valor.formataParaMoedaBrasileira()
+                itemProdutoValor.text = moedaFormatada
 
-                if (produto.imagem != null){
+                if (produto.imagem != null) {
                     itemProdutoImagem.tentaCarregar(produto.imagem)
-                }else{
+                } else {
                     itemProdutoImagem.visibility = GONE
                 }
 

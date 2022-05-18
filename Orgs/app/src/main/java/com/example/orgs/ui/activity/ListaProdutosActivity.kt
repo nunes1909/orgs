@@ -34,6 +34,12 @@ class ListaProdutosActivity : AppCompatActivity() {
             adapter = produtoAdapter
             layoutManager = LinearLayoutManager(context)
         }
+        produtoAdapter.produtoClicadoListener = {
+            val intent = Intent(this, DetalhesProdutoActivity::class.java).apply {
+                putExtra("produto", it)
+            }
+            startActivity(intent)
+        }
     }
 
     private fun configuraFabNovoProduto() {
