@@ -13,7 +13,7 @@ import java.text.NumberFormat
 import java.util.*
 
 class ListaProdutosAdapter(
-    listaProdutos: List<Produto>,
+    listaProdutos: List<Produto> = emptyList(),
     var produtoClicadoListener: (produto: Produto) -> Unit = {}
 ) : RecyclerView.Adapter<ListaProdutosAdapter.ProdutoViewHolder>() {
 

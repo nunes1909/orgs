@@ -3,10 +3,10 @@ package com.example.orgs.ui.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.orgs.R
-import com.example.orgs.dao.ProdutoDAO
+import com.example.orgs.dao.internoDAO
+import com.example.orgs.database.AppDatabase
 import com.example.orgs.databinding.ActivityFormularioProdutoBinding
 import com.example.orgs.extensions.tentaCarregar
 import com.example.orgs.model.Produto
@@ -18,7 +18,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityFormularioProdutoBinding.inflate(layoutInflater)
     }
-    private val dao = ProdutoDAO()
+
     private var url: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,7 +58,7 @@ class FormularioProdutoActivity : AppCompatActivity() {
                 imagem = url
             )
 
-            dao.salva(produtoCriado)
+            AppDatabase.getInstance(this).getProdutoDAO().salva(produtoCriado)
             finish()
         }
         return super.onOptionsItemSelected(item)
