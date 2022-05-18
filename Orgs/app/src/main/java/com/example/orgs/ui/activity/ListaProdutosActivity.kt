@@ -4,18 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.orgs.dao.ProdutoDAO
+import com.example.orgs.database.AppDatabase
 import com.example.orgs.databinding.ActivityListaProdutosBinding
 import com.example.orgs.ui.recylerview.ListaProdutosAdapter
 
 class ListaProdutosActivity : AppCompatActivity() {
 
+    private val produtoAdapter = ListaProdutosAdapter()
+
     private val binding by lazy {
         ActivityListaProdutosBinding.inflate(layoutInflater)
     }
-
-    private val dao = ProdutoDAO()
-    private val produtoAdapter = ListaProdutosAdapter(listaProdutos = dao.buscaTodos())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +25,8 @@ class ListaProdutosActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        produtoAdapter.atualiza(dao.buscaTodos())
+        val produtoDAO = AppDatabase.getInstance(this).getProdutoDAO()
+        produtoAdapter.atualiza(produtoDAO.buscaTodos())
     }
 
     private fun configuraRecyclerView() {
